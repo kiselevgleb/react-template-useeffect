@@ -6,7 +6,6 @@ function List(props) {
   const [info, setInfo] = useState(null);
   const [viewId, setId] = useState("");
   useEffect(() => {
-    console.log(viewId);
     if (viewId == "") {
       return;
     } else {

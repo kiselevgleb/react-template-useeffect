@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
 function Details(props) {
-  // const {notes, onView: handleView} = props;
-  console.log(props);
   return (
     <>
     <ul className="list" key={props.info.id}>
