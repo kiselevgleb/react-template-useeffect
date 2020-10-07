@@ -2,29 +2,20 @@ import React, { useState, useEffect } from 'react'
 import './App.css';
 import List from './List';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { notes: [] };
-  }
-
-  loadActualList = () => {
-    fetch("https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/users.json")
+function App() {
+  const [state, setState] = useState({ notes: [] });
+  useEffect(() => {
+    fetch(process.env.REACT_APP_USERS_URL)
       .then(response => response.json()
       )
       .then(rates => {
-        this.setState({ notes: rates });
+        setState({ notes: rates });
       });
-  }
-  componentDidMount() {
-    this.loadActualList();
-  }
-  render() {
-    return (
-      <div className="App">
-        <List notes={this.state.notes} />
-      </div>
-    );
-  }
+  })
+  return (
+    <div className="App">
+      <List notes={state.notes} />
+    </div>
+  );
 }
 export default App;

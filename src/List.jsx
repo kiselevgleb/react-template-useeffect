@@ -4,23 +4,24 @@ import Details from './Details';
 function List(props) {
   const { notes } = props;
   const [info, setInfo] = useState(null);
-  const [viewId, setId] = useState("");
+  const [viewId, setViewId] = useState("");
   useEffect(() => {
     if (viewId == "") {
       return;
     } else {
-      fetch(`https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/${viewId.id}.json`)
+      fetch(`${process.env.REACT_APP_USER_URL}${viewId.id}.json`)
         .then(response => response.json()
         )
         .then(rates => {
-          setInfo({rates});
+          setInfo({ rates });
         });
     }
   }, [viewId])
 
   const view = id => {
-    if(id!==viewId.id){
-    setId({ id });}
+    if (id !== viewId.id) {
+      setViewId({ id });
+    }
   }
 
   return (
